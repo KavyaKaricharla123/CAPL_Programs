@@ -1,0 +1,24 @@
+/* Second CAPL Program: Send CAN Message */
+
+variables {
+  msTimer sendTimer;       // Timer to send message
+  int counter = 0;         // Signal counter
+}
+
+/* Start simulation */
+on start {
+  write("Simulation started: Sending CAN message every 1 second");
+  setTimer(sendTimer, 1000);   // 1-second timer
+}
+
+/* Timer event: send CAN message */
+on timer sendTimer {
+  MyMessage.signal1 = counter;  // Set signal value
+  output(MyMessage);             // Send message on CAN bus
+  write("Message sent, signal value: %d", counter);
+
+  counter++;                     // Increment counter
+  if (counter > 10) counter = 0; // Reset after 10
+
+  setTimer(sendTimer, 1000);     // Restart timer
+}
