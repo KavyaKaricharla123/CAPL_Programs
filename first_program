@@ -1,1 +1,16 @@
+/* First CAPL Program: Hello CAPL */
+
+variables {
+  msTimer myTimer;   // Timer variable
+}
+
+on start {
+  write("Simulation started!");      // Message at start
+  setTimer(myTimer, 2000);           // Start timer for 2 seconds
+}
+
+on timer myTimer {
+  write("Timer triggered: 2 seconds passed");  // Message every 2 sec
+  setTimer(myTimer, 2000);                     // Restart timer
+}
 
